@@ -3,7 +3,7 @@ import { supabase } from '../libs/supabaseClient';
 const router = Router();
 
 router.get('/', async (_req, res) => {
-  const { data, error } = await supabase.from('producto').select('*')
+  const { data, error } = await supabase.from('categoria_producto').select('*')
   if (error) {
     // Send the response, then return to stop further execution.
     res.status(500).json({ error });
