@@ -2,6 +2,7 @@ import express, { Express, Response } from 'express';
 import dotenv from 'dotenv';
 import productosRouter from './routes/productos';
 import categoriasRouter from './routes/categorias';
+import marcasRouter from './routes/marcas_producto';
 import authRouter from './routes/auth';
 import cors from 'cors';
 
@@ -25,6 +26,7 @@ app.use(express.json());
 // Mount the routers under a common /api prefix for better organization
 app.use('/api/productos', productosRouter);
 app.use('/api/categorias', categoriasRouter);
+app.use('/api/marcas_producto', marcasRouter);
 app.use('/api/auth', authRouter);
 
 
