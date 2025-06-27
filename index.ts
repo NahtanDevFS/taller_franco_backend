@@ -25,11 +25,11 @@ app.use(express.json());
 
 // Routes
 // Mount the routers under a common /api prefix for better organization
-app.use('/productos', productosRouter);
-app.use('/categorias', categoriasRouter);
-app.use('/marcas_producto', marcasRouter);
-app.use('/venta_baterias', ventaBateriasRouter);
-app.use('/auth', authRouter);
+app.use('/api/productos', productosRouter);
+app.use('/api/categorias', categoriasRouter);
+app.use('/api/marcas_producto', marcasRouter);
+app.use('/api/venta_baterias', ventaBateriasRouter);
+app.use('/api/auth', authRouter);
 
 
 // Define the port, using the environment variable or defaulting to 3000
