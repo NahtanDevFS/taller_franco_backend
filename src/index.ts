@@ -33,9 +33,11 @@ app.use('/api/auth', authRouter);
 
 
 // Define the port, using the environment variable or defaulting to 3000
-const PORT = process.env.PORT || 3001;
+//const PORT = process.env.PORT || 3001;
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`[server]: Server is running at http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`[server]: Server is running at port:${PORT}`);
+// });
+
+export default app;
