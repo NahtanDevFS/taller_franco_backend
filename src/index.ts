@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import productosRouter from './routes/productos';
 import categoriasRouter from './routes/categorias';
 import marcasRouter from './routes/marcas_producto';
+import ventaBateriasRouter from './routes/venta_baterias';
 import authRouter from './routes/auth';
 import cors from 'cors';
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use('/api/productos', productosRouter);
 app.use('/api/categorias', categoriasRouter);
 app.use('/api/marcas_producto', marcasRouter);
+app.use('/api/venta_baterias', ventaBateriasRouter);
 app.use('/api/auth', authRouter);
 
 
