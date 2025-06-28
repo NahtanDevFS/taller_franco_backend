@@ -15,7 +15,7 @@ const app: Express = express();
 
 // Middleware de CORS ()
 app.use(cors({
-  origin: 'https://taller-franco-backend.vercel.app/api/auth/login', // Permite solo mi frontend
+  origin: 'https://taller-franco-backend.vercel.app', // Permite solo mi frontend
   credentials: true // Si usas cookies o autenticación basada en sesión
 }));
 
