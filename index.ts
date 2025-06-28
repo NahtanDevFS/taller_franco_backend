@@ -15,7 +15,7 @@ const app: Express = express();
 
 // Middleware de CORS ()
 app.use(cors({
-  origin: 'https://taller-franco-backend.vercel.app', // Permite solo mi frontend
+  origin: 'https://taller-franco-frontend.vercel.app', // Permite solo mi frontend
   credentials: true // Si usas cookies o autenticación basada en sesión
 }));
 
@@ -30,15 +30,6 @@ app.use('/api/categorias', categoriasRouter);
 app.use('/api/marcas_producto', marcasRouter);
 app.use('/api/venta_baterias', ventaBateriasRouter);
 app.use('/api/auth', authRouter);
-
-
-// Define the port, using the environment variable or defaulting to 3000
-//const PORT = process.env.PORT || 3001;
-
-// Start the server
-// app.listen(PORT, () => {
-//   console.log(`[server]: Server is running at port:${PORT}`);
-// });
 
 // Exportación para Vercel
 module.exports = app;  // Usa `module.exports` para compatibilidad con @vercel/node
