@@ -31,5 +31,17 @@ app.use('/api/marcas_producto', marcasRouter);
 app.use('/api/venta_baterias', ventaBateriasRouter);
 app.use('/api/auth', authRouter);
 
+// --- Bloque para iniciar el servidor en desarrollo local ---
+const PORT = process.env.PORT || 3001; // Usa el puerto del entorno o 3001 por defecto
+
+// Solo inicia el servidor si el archivo se ejecuta directamente en un entorno de no producción.
+// Vercel no ejecutará este bloque, pero sí lo hará `ts-node-dev`.
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor de desarrollo corriendo en http://localhost:${PORT}`);
+  });
+}
+
+
 // Exportación para Vercel
 module.exports = app;  // Usa `module.exports` para compatibilidad con @vercel/node
