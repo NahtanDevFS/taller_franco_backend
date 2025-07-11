@@ -6,9 +6,26 @@ import marcasRouter from './routes/marcas_producto';
 import ventaBateriasRouter from './routes/venta_baterias';
 import authRouter from './routes/auth';
 import cors from 'cors';
+import rateLimit from 'express-rate-limit'; // middleware de express
+
+// Configuración del rate limiting
+const generalLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minuto
+  max: 100, // Límite de peticiones por IP
+  standardHeaders: true, // Headers estándar (RateLimit-*)
+  legacyHeaders: false, // Desactiva headers antiguos
+  message: 'Demasiadas peticiones desde esta IP, por favor inténtalo de nuevo más tarde.'
+});
+
+//Configuracion del auth limiting
+const authLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hora
+  max: 10, // Solo 10 intentos de login por hora
+  message: 'Demasiados intentos de acceso, por favor inténtalo de nuevo más tarde.'
+});
 
 
-// Initialize dotenv to load environment variables from the .env file
+// inicializa dotenv para cargar las variables de entorno
 dotenv.config();
 
 const app: Express = express();
@@ -22,6 +39,12 @@ app.use(cors({
 
 // Middleware to parse JSON bodies. This is crucial for POST/PUT requests.
 app.use(express.json());
+
+// Aplica rate limiting general a todas las rutas /api
+app.use('/api', generalLimiter);
+
+// Aplica rate limiting estricto solo al auth
+app.use('/api/auth', authLimiter); 
 
 // Routes
 // Mount the routers under a common /api prefix for better organization
@@ -38,7 +61,7 @@ const PORT = process.env.PORT || 3001; // Usa el puerto del entorno o 3001 por d
 // Vercel no ejecutará este bloque, pero sí lo hará `ts-node-dev`.
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
-    console.log(`🚀 Servidor de desarrollo corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor de desarrollo corriendo en http://localhost:${PORT}`);
   });
 }
 

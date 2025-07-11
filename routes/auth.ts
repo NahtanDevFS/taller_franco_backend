@@ -33,7 +33,6 @@ router.post('/login', async (req: Request, res: Response) => {
       user: {
         id: data.user.id,
         email: data.user.email,
-        // Agrega aquí más campos si tienes una tabla de perfil
       }
     });
 
